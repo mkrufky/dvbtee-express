@@ -22,13 +22,15 @@ var Parser = function (res) {
 /* GET users listing. */
 router.get('/file', function(req, res, next) {
   if (typeof req.query.url !== 'undefined') {
-    fs.createReadStream(req.query.url).pipe((new Parser(res)).s)
+    var p = (new Parser(res)).s
+    fs.createReadStream(req.query.url).pipe(p)
   }
 });
 
 router.get('/url', function (req, res, next) {
   if (typeof req.query.url !== 'undefined') {
-    request(req.query.url).pipe((new Parser(res)).s)
+    var p = (new Parser(res)).s
+    request(req.query.url).pipe(p)
   }
 });
 
