@@ -16,20 +16,20 @@ var Parser = function (res) {
   parser.on('end', function() {
     res.send(tables);
   })
-  this.s = parser
+  this.parser = parser
 }
 
 /* GET users listing. */
 router.get('/file', function(req, res, next) {
   if (typeof req.query.url !== 'undefined') {
-    var p = (new Parser(res)).s
+    var p = (new Parser(res)).parser
     fs.createReadStream(req.query.url).pipe(p)
   }
 });
 
 router.get('/url', function (req, res, next) {
   if (typeof req.query.url !== 'undefined') {
-    var p = (new Parser(res)).s
+    var p = (new Parser(res)).parser
     request(req.query.url).pipe(p)
   }
 });
