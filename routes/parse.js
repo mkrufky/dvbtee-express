@@ -5,7 +5,7 @@ var dvbtee = require('dvbtee');
 var request = require('request');
 
 var Parser = function (res) {
-  parser = new dvbtee.Parser;
+  parser = new dvbtee.Parser();
   var tables = {}
   parser.on('data', function(data) {
     if (!tables.hasOwnProperty(data.tableName)) {
